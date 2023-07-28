@@ -3,7 +3,7 @@ import axios from "axios";
 import PokemonData from "./PokemonData";
 import LoadingScreen from "./LoadingScreen";
 import ErrorScreen from "./ErrorScreen";
-import { Container, TextField, Button } from "@mui/material";
+import { Container, TextField, Button, CircularProgress } from "@mui/material";
 
 const Pokedex: React.FC = () => {
   const [pokemonName, setPokemonName] = useState("");
@@ -24,6 +24,7 @@ const Pokedex: React.FC = () => {
       setLoading(false);
     } catch (error) {
       setError("¡Error al obtener los datos del Pokémon!");
+      setPokemonData(null);
       setLoading(false);
     }
   };
@@ -31,6 +32,7 @@ const Pokedex: React.FC = () => {
   const handleRetry = () => {
     setError("");
     setPokemonData(null);
+    setPokemonName(""); // Limpiar la barra de búsqueda al hacer clic en "Intentar de nuevo"
   };
 
   return (
@@ -51,7 +53,7 @@ const Pokedex: React.FC = () => {
 
       {loading && <LoadingScreen />}
       {error && <ErrorScreen error={error} onRetry={handleRetry} />}
-      {pokemonData && <PokemonData data={pokemonData} />}
+      {!loading && !error && pokemonData && <PokemonData data={pokemonData} />}
     </Container>
   );
 };
