@@ -11,6 +11,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
 /* app.css */
 
 body {
@@ -45,10 +46,10 @@ body {
   margin-right: 8px;
   margin-bottom: 4px;
 }
+
 .pokemon-image-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 150px; 
+  height: 150px;
 }
-
